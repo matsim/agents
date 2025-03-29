@@ -54,6 +54,7 @@ def generate_landing_page(brief: str = Body(..., embed=True)):
         Analyse le brief utilisateur suivant : {brief}
         Objectif : Identifier l'objectif principal, l'audience cible, l'USP et 3 à 5 messages clés.
         Fournis un document de stratégie concis (max 300 mots).""",
+        expected_output="Document texte contenant Objectif, Cible, USP, Messages clés, Ton suggéré",
         agent=strategist
     )
 
@@ -69,6 +70,7 @@ def generate_landing_page(brief: str = Body(..., embed=True)):
         - 2 à 3 appels à l’action (CTA)
         Le ton doit être adapté à la cible définie dans la stratégie.
         """,
+        expected_output = "Contenu textuel complet de la landing page",
         agent=copywriter,
         context=[task1]
     )
@@ -80,6 +82,7 @@ def generate_landing_page(brief: str = Body(..., embed=True)):
         - Liste les sections dans un ordre logique (ex : Hero, Avantages, CTA…)
         - Pour chaque section, indique les textes à utiliser
         """,
+        expected_output = "Plan détaillé de la structure de la landing page avec contenu associé",
         agent=architect,
         context=[task1, task2]
     )
