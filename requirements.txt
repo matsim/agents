@@ -1,3 +1,4 @@
-  crewai
-  fastapi
-  uvicorn
+fastapi
+uvicorn
+crewai
+langchain
