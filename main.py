@@ -1,8 +1,22 @@
 from fastapi import FastAPI, Body
+from fastapi.middleware.cors import CORSMiddleware
 from crewai import Agent, Task, Crew
-from langchain.tools import tool
 
 app = FastAPI()
+
+# Middleware CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Ou restreins à ["https://ton-site.com"]
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+@app.get("/")
+def read_root():
+    return {"message": "Bienvenue sur l’API CrewAI"}
+
 
 @app.post("/landing/crew")
 def generate_landing_page(brief: str = Body(..., embed=True)):
